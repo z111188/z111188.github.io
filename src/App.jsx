@@ -6,7 +6,7 @@ function App() {
   const [count, setCount] = useState(0);
   return (
     <>
-      <h1>Currency Converter</h1>
+      <h1>Currency Converter Test</h1>
       <CurrencyDropdown />
     </>
   );
