@@ -1,0 +1,45 @@
+
+
+.stock-input {
+  background-color: whitesmoke;
+  color: black;
+  width: 150px;
+  height: 25px;
+  border-radius: 5px;
+  font-weight: bold;
+  border-style: solid;
+  border-color: grey;
+  padding: 10px;
+}
+
+.stockDataContainer {
+  display: flex;
+  flex-wrap:wrap;
+  column-gap: 10px;
+  row-gap: 5px;
+  color: black;
+  padding: 10px;
+  background-color: white;
+}
+button{
+  background-color: black;
+  border-radius: 5px;
+  border-style: solid;
+  border-color: black;
+}
+
+button:hover {
+  background-color: darkgreen;
+}
+.pnl{
+  color: red;
+  font-weight: bold;
+}
+.pnl1{
+  color: green;
+  font-weight: bold;
+}
+.stockbox{
+  border-style:solid;
+  padding: 10px;
+}
