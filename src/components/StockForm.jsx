@@ -10,7 +10,7 @@ function StockForm() {
   const [currentPrice,setCurrentPrice] = useState("");
   
   useEffect(() => {
-    fetch("https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol="+"IBM"+"&apikey=demo")
+    fetch("https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol="+symbol+"&apikey=027d3303de6bd0ea33155022")
     .then((res) => res.json())
     .then((data) => setCurrentPrice(data['Global Quote']['05. price']))
     .catch(()=>{alert="Invalid Stock Symbol"})
