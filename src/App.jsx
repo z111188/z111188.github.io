@@ -1,24 +1,20 @@
 import { useState } from "react";
 import "./App.css";
 import StockForm from "./components/StockForm";
-import MyContext from "./contexts/StockContext";
-import StockList from "./components/StockList";
+import StockContext from "./contexts/StockContext";
+import StockList1 from "./components/Stocklist1";
 
 
 function App() {
   //const [count, setCount] = useState(0);
-  const [symbol, setSymbol] = useState("");
-  const [quantity, setQuantity] = useState("");
-  const [purchaseprice, setPurchaseprice] = useState("");
-  const [result, setResult] = useState(["No Stocks Added"]);
+  const [stocks, setStocks] = useState([]);
 
   return (
-    <MyContext.Provider value={{symbol,setSymbol,quantity,setQuantity,purchaseprice,setPurchaseprice,result,setResult}}>
+    <StockContext.Provider value={{stocks,setStocks}}>
       <h1>Finance Dashboard</h1>
       <StockForm />
-      <h1>Stock List</h1>
-      <h2>{result}</h2>
-    </MyContext.Provider>
+      <StockList1 />
+    </StockContext.Provider>
   );
 }
 

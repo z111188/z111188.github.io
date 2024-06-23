@@ -1,39 +1,61 @@
 import { useCallback, useContext, useEffect, useState } from "react";
-import MyContext from "../contexts/StockContext";
 import "./stock.css";
-import StockList from "./StockList";
+import StockContext from "../contexts/StockContext";
 
 function StockForm() {
+  const {stocks, setStocks} = useContext(StockContext);
+  const [symbol, setSymbol] = useState("");
+  const [quantity, setQuantity] = useState("");
+  const [purchaseprice, setPurchasePrice] = useState("");
+  const [currentPrice,setCurrentPrice] = useState("");
+  
+  useEffect(() => {
+    fetch("https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol="+"IBM"+"&apikey=demo")
+    .then((res) => res.json())
+    .then((data) => setCurrentPrice(data['Global Quote']['05. price']))
+    .catch(()=>{alert="Invalid Stock Symbol"})
+  });
 
-  const stockContext = useContext(MyContext);
+  const AddStock = useCallback( (event) => {
+    event.preventDefault();
+
+    const pnl= ((currentPrice - purchaseprice)*quantity).toFixed(2);
+    const newStock = {symbol, quantity, purchaseprice, currentPrice, pnl};
+    setStocks([...stocks,newStock]);
+    
+    setSymbol('');
+    setQuantity('');
+    setPurchasePrice('');
+
+  }, [symbol, quantity, purchaseprice, stocks, setStocks]);
 
   return (
-    <> <div className="stockDataContainer">
+    <> 
+    <form onSubmit={AddStock} className="stockDataContainer" >
       <input
-        value={stockContext.Symbol}
-        onChange= {(event) => stockContext.setSymbol(event.target.value)}
+        value={symbol}
+        onChange= {(event) => setSymbol(event.target.value)}
         placeholder="Stock Symbol"
         className="stock-input"
-      ></input>
+      required></input>
       <input
-        value={stockContext.quantity}
-        onChange= {(event) => stockContext.setQuantity(event.target.value)}
+        value={quantity}
+        onChange= {(event) => setQuantity(event.target.value)}
         input type="number"
         min="0"
         placeholder="Quantity"
         className="stock-input"
-     ></input>
+        required></input>
       <input
-        value={stockContext.purchaseprice}
-        onChange= {(event) => stockContext.setPurchaseprice(event.target.value)}
+        value={purchaseprice}
+        onChange= {(event) => setPurchasePrice(event.target.value)}
         input type="number"
         min="0"
         placeholder="Purchase Price"
         className="stock-input"
-      ></input>
-      <button onClick ={StockList}>Add Stock</button>
-    </div>
-
+      required></input>
+      <button type="submit">Add Stock</button>
+    </form>
  </>
   );
 

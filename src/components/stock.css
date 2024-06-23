@@ -1,45 +1,65 @@
 
-
 .stock-input {
+  font-family: 'Courier New', Courier, monospace;
   background-color: whitesmoke;
   color: black;
-  width: 150px;
-  height: 25px;
   border-radius: 5px;
   font-weight: bold;
   border-style: solid;
-  border-color: grey;
+  border-color: black;
   padding: 10px;
+
 }
 
 .stockDataContainer {
   display: flex;
-  flex-wrap:wrap;
+  flex-direction: column;
   column-gap: 10px;
   row-gap: 5px;
   color: black;
   padding: 10px;
-  background-color: white;
+  background-color: blueviolet;
 }
+
 button{
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bolder;
   background-color: black;
   border-radius: 5px;
   border-style: solid;
-  border-color: black;
+  border-color:white;
 }
 
 button:hover {
-  background-color: darkgreen;
+  background-color:violet;
+  color:black;
 }
-.pnl{
+.neg{
   color: red;
   font-weight: bold;
 }
-.pnl1{
+.pos{
   color: green;
   font-weight: bold;
 }
 .stockbox{
   border-style:solid;
-  padding: 10px;
+  border-color:blueviolet;
+  padding-left: 15px;
+  background-color: white;
 }
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {padding:5px;
+}
+
+@media (min-width: 800px) {
+  .stockDataContainer {
+    flex-direction: row;
+    justify-content: center;
+    
+  };}
